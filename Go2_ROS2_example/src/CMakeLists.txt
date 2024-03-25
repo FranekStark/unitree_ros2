@@ -73,4 +73,22 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+add_library(common src/common/motor_crc.cpp src/common/ros2_sport_client.cpp)
+ament_target_dependencies(common PUBLIC unitree_go unitree_api rclcpp)
+ament_export_targets(common HAS_LIBRARY_TARGET)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(
+  TARGETS common
+  EXPORT common
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
+
+
+
+
 ament_package()
